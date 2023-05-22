@@ -15,12 +15,12 @@
     font-size: 12px;
 }
 
-input[type = "text"],input[type = "password"] {
+.loginInput {
     height: 25px;
     border: 1px solid;
 }
 
-button {
+.loginButton {
     margin-top: 10px;
     cursor: pointer;
     font-size: 15px;
@@ -30,7 +30,7 @@ button {
     padding: 10px 20px;
 }
 
-button:hover {
+.loginButton:hover {
     background: #f7ece3;
 }
 

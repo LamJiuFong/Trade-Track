@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./style.css";
+import PortfolioHome from "../Portfolio/PortfolioHome";
 
 export default function LoginPage() {
     // states
@@ -7,6 +8,10 @@ export default function LoginPage() {
     const [password, setPasswordState] = useState("");
     const [isSubmitted, setIsSubmittedState] = useState(false);
     const [errorType, setErrorTypeState] = useState("");
+
+    // references
+    const usernameRef = useRef(null);
+    const passwordRef = useRef(null);
 
     // User Login info
     const database = [
@@ -41,9 +46,14 @@ export default function LoginPage() {
                 setIsSubmittedState(true);
             } else {
                 setErrorTypeState("wrong password");
+                setPasswordState("");
+                passwordRef.current.focus();
             }
         } else {
             setErrorTypeState("wrong username");
+            setUsernameState("");
+            setPasswordState("");
+            usernameRef.current.focus();
         }
     }
 
@@ -63,6 +73,8 @@ export default function LoginPage() {
                 <label> Username:  </label>
                 <input 
                     type = "text"
+                    className="loginInput"
+                    ref={usernameRef}
                     name = "uname"
                     value = {username}
                     onChange = {handleUnameChange}></input>
@@ -72,13 +84,15 @@ export default function LoginPage() {
                 <label> Password: </label>
                 <input
                     type = "password"
+                    className="loginInput"
+                    ref={passwordRef}
                     name = "pass"
                     value = {password}
                     onChange = {handlePassChange}></input>
                 {renderErrorMessage("wrong password")}
             </div>
             <div className="submitButton">
-                <button onClick={handleSubmit}> login </button>
+                <button className="loginButton" onClick={handleSubmit}> login </button>
             </div>
         </form>
     )
@@ -87,7 +101,7 @@ export default function LoginPage() {
     return (
         <div class="app">
             {isSubmitted 
-             ? <h1>Signed in</h1> // route to home page 
+             ? <PortfolioHome/> // route to home page 
              : <>
                <h1 class = "title">Welcome to our page!</h1>
                <h2 class = "smallTitle">Sign In</h2>

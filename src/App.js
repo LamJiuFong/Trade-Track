@@ -1,4 +1,3 @@
-import './App.css';
 import LoginPage from './loginPage/LoginPage';
 import React from 'react';
 

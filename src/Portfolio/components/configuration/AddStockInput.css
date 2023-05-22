@@ -1,0 +1,22 @@
+.addInputForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addInputRow {
+    width: 140px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.addInputRow input, select {
+    width: 100%;
+    height: 80%;
+}
+
+.addInput:focus {
+    outline: none;
+}

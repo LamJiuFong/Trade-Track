@@ -1,0 +1,38 @@
+.tempHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolioPageBody {
+    /* 80vh means take up 80% of the screen height */
+    height: 80vh;
+}
+
+.portfolioConfiguration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.continueButtonWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.continueButton {
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background: black;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.continueButton:hover {
+    cursor: pointer;
+}
