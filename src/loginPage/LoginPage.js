@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./style.css";
-import PortfolioHome from "../Portfolio/PortfolioHome";
+import HomePage from "../HomePage/home";
 
 export default function LoginPage() {
     // states
@@ -101,7 +101,7 @@ export default function LoginPage() {
     return (
         <div class="app">
             {isSubmitted 
-             ? <PortfolioHome/> // route to home page 
+             ? <HomePage/> // route to home page 
              : <>
                <h1 class = "title">Welcome to our page!</h1>
                <h2 class = "smallTitle">Sign In</h2>
