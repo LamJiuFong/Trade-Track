@@ -1,4 +1,4 @@
-import LoginPage from './loginPage/LoginPage';
+import LoginPage from './LoginAndRegister/loginPage/LoginPage';
 import React from 'react';
 
 function App() {

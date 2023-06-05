@@ -4,9 +4,8 @@
     justify-content: center;
 }
 
-.portfolioPageBody {
-    /* 80vh means take up 80% of the screen height */
-    height: 80vh;
+.Home {
+    height: 100vh;
 }
 
 .portfolioConfiguration {

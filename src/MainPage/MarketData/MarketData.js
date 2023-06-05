@@ -1,15 +1,9 @@
 import React from 'react';
+import "./style.css";
   
 const MarketData = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'Left',
-        alignItems: 'Right',
-        height: '100vh'
-      }}
-    >
+    <div className='app'>
       <h1>We will include the market data here!</h1>
     </div>
   );

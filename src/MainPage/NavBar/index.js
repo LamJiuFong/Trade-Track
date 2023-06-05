@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Nav,
   NavLink,
@@ -10,8 +10,7 @@ const Navbar = () => {
   return (
     <>
       <Nav>
-        <Bars />
-  
+        <Bars />  
         <NavMenu>
           <NavLink to='/' activeStyle>
             Home
