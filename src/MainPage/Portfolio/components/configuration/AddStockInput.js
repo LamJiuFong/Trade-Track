@@ -41,13 +41,13 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
                     price: inputValues.price,
                 };
 
-                const response = await fetch(`https://${DATABASE}.json`, {
+                const response = fetch(`https://${DATABASE}.json`, {
                     method: "POST",
                     "Content-Type": "application/json",
                     body: JSON.stringify(newStock),
                 });
 
-                const data = await response.json();
+                const data = response.json();
 
                 if (data.name) {
                     setStocks((stocks) => [

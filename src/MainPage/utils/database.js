@@ -1,2 +1,2 @@
-const DATABASE = "orbital-24ded-default-rtdb.asia-southeast1.firebasedatabase.app/stocks";
+const DATABASE = "stock-portfolio-49acf-default-rtdb.asia-southeast1.firebasedatabase.app/stocks";
 export default DATABASE;
