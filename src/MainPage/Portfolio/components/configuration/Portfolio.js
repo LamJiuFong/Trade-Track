@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddStockInput from "./AddStockInput";
-import DATABASE from "../../utils/database";
+import DATABASE from "../../../utils/database";
 import "./Portfolio.css";
 
-export default function Portfolio({stocks, setStocks}) {
+export default function Portfolio({ stocks, setStocks }) {
     const [addStocksVisible, setAddStocksVisible] = useState(false);
 
     //TODO: handle fetching stock data
@@ -42,7 +42,7 @@ export default function Portfolio({stocks, setStocks}) {
                 "Content-Type": "application/json",
             });
 
-            setStocks(stocks.filter(s => s.id !== id));
+            setStocks((stocks) => stocks.filter(s => s.id !== id));
         } catch (err) {
             console.log(err);
         }
@@ -57,23 +57,23 @@ export default function Portfolio({stocks, setStocks}) {
     }  
 
     return (
-        <div className="portfolioPage">
-            <div className="portfolioMainRowWrapper">
-                <div className="portfolioMainRow">Ticker</div>
-                <div className="portfolioMainRow">Position</div>
-                <div className="portfolioMainRow">Quantity</div>
-                <div className="portfolioMainRow">Price</div>
+        <div className="Portfolio">
+            <div className="portfolio-main-row-wrapper">
+                <div className="portfolio-main-row">Ticker</div>
+                <div className="portfolio-main-row">Position</div>
+                <div className="portfolio-main-row">Quantity</div>
+                <div className="portfolio-main-row">Price</div>
             </div>
 
             {stocks.map(s => {
                 return (
-                    <div className="portfolioRowWrapper" key={s.id}>
-                        <div className="portfolioRow"> {s.ticker}</div>
-                        <div className="portfolioRow"> {s.position}</div>
-                        <div className="portfolioRow"> {s.quantity}</div>
-                        <div className="portfolioRow"> {s.price}</div>
+                    <div className="stock-row-wrapper" key={s.id}>
+                        <div className="stock-row"> {s.ticker}</div>
+                        <div className="stock-row"> {s.position}</div>
+                        <div className="stock-row"> {s.quantity}</div>
+                        <div className="stock-row"> {s.price}</div>
                         <button 
-                            className="removeButton" 
+                            className="button-remove-stock" 
                             onClick={() => handleRemoveStock(s.id)}
                         >
                             <span>-</span>
@@ -85,7 +85,7 @@ export default function Portfolio({stocks, setStocks}) {
             {renderAddStockInput()}
 
             <button 
-                className="addStockButton" 
+                className="button-add-stock" 
                 onClick={() => setAddStocksVisible(true)}
             >
                 <span>ADD NEW STOCK</span>

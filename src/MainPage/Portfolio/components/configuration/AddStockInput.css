@@ -1,10 +1,10 @@
-.addInputForm {
+.AddStockForm {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.addInputRow {
+.new-stock {
     width: 140px;
     height: 40px;
     display: flex;
@@ -12,11 +12,11 @@
     font-weight: bold;
 }
 
-.addInputRow input, select {
+.new-stock input, select {
     width: 100%;
     height: 80%;
 }
 
-.addInput:focus {
+.new-stock-input:focus {
     outline: none;
 }

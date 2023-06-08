@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DATABASE from "../../utils/database";
+import DATABASE from "../../../utils/database";
 import "./AddStockInput.css";
 
 export default function AddStockInput({setStocks, setAddStocksVisibility}) {
@@ -14,10 +14,10 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
 
     //handle change of inputs
     const handleChange = (event) => {
-        setInputValues({
+        setInputValues((inputValues) => ({
             ...inputValues,
             [event.target.name]: event.target.value,
-        })
+        }));
     };
 
     //handle cancel
@@ -26,12 +26,13 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
         setAddStocksVisibility(false);
     };
 
-    //handle submit
+    //handle new stock additions
     const handleSubmit = async (event) => {
-        event.preventDefault();
+        //prevents default behavior of refreshing the page
+        event.preventDefault(); 
 
         try {
-            // validation of a correct input
+            //validation of a correct input
             if (inputValues.ticker && inputValues.price > 0 && inputValues.quantity > 0) {
                 const newStock = {
                     ticker: inputValues.ticker,
@@ -63,56 +64,56 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
     };
 
     return (
-       <form className="addInputForm">
-            <div className="addInputRow">
+       <form className="AddStockForm">
+            <div className="new-stock">
                 <input
                     type="text"
                     name="ticker"
                     value={inputValues.ticker}
                     onChange={handleChange}
-                    className="addInput"/>
+                    className="new-stock-input"/>
             </div>
 
-            <div className="addInputRow">
+            <div className="new-stock">
                 <select
                     name="position"
                     onChange={handleChange}
                     value={inputValues.position}
-                    className="addInput"
+                    className="new-stock-input"
                 >
                     <option value="BUY">BUY</option>
                     <option value="SELL">SELL</option>
                 </select>
             </div>
 
-            <div className="addInputRow">
+            <div className="new-stock">
                 <input
                     type="number"
                     min="0"
                     name="quantity"
                     onChange={handleChange}
                     value={inputValues.quantity}
-                    className="addInput"
+                    className="new-stock-input"
                 />
             </div>
 
-            <div className="addInputRow">
+            <div className="new-stock">
                 <input
                     type="number"
                     min="0"
                     name="price"
                     onChange={handleChange}
                     value={inputValues.price}
-                    className="addInput"
+                    className="new-stock-input"
                 />
             </div>
             
             
-            <button className="addButton" onClick={handleSubmit}>
+            <button className="button-add" onClick={handleSubmit}>
                 <span>+</span>
             </button>
 
-            <button className="cancelAddStockButton" onClick={handleCancel}>
+            <button className="button-cancel" onClick={handleCancel}>
                 <span>Cancel</span>
             </button>
        </form> 

@@ -1,27 +1,23 @@
-.tempHeader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.Home {
+.PortfolioHome {
     height: 100vh;
 }
 
-.portfolioConfiguration {
+.portfolio-configuration {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.continueButtonWrapper {
+.portfolio-button-continue-wrapper,
+.portfolio-monitor-button-back-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.continueButton {
+.portfolio-button-continue,
+.portfolio-monitor-button-back {
     width: 200px;
     height: 40px;
     border: none;
@@ -32,6 +28,7 @@
     margin-bottom: 15px;
 }
 
-.continueButton:hover {
+.portfolio-button-continue:hover,
+.portfolio-monitor-button-back:hover {
     cursor: pointer;
 }
