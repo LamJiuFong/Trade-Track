@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import { getFirestore, collection} from 'firebase/firestore';
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
@@ -15,7 +16,10 @@ const firebaseConfig = {
   appId: "1:886084272624:web:a790e650e90b5561961d35"
 };
 
-// Initialize Firebase
+// // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+
+// Get the user collection 
+export const userCollection = collection(getFirestore(app), 'users');

@@ -1,5 +1,6 @@
 import { STOCK_API } from "./stockAPI";
 import { TOKEN } from "./stockAPI";
+import {v4 as uuidv4} from 'uuid';
 
 const stockFetcher = (stocks, setStocks, profitLossCalculator) => {
     stocks.forEach(async (s) => {

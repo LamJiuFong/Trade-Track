@@ -2,9 +2,10 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import MainPage from "../../MainPage/main.js";
 import LoginPage from "../loginPage/LoginPage";
-import { auth } from "../../config/firebase-config";
+import { auth, userCollection } from "../../config/firebase-config";
 
 import "./style.css";
+import { setDoc, doc } from "firebase/firestore";
 
 export default function RegisterPage() {
 
@@ -19,7 +20,10 @@ export default function RegisterPage() {
     // handlers
     const handleRegister = async () => {
         try {
-            const user = await createUserWithEmailAndPassword(auth, email, pass);
+            await createUserWithEmailAndPassword(auth, email, pass).then(() => {
+                // create an empty doc each time we register a new user
+                setDoc(doc(userCollection, auth.currentUser.uid), {stocks: []});
+            });
             setIsLoggedIn(true);
             setHasErr(false);
         } catch (err) {

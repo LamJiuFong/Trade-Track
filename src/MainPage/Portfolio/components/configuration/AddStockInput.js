@@ -1,9 +1,12 @@
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useState } from "react";
-import DATABASE from "../../../utils/database";
+import {v4 as uuidv4} from 'uuid';
+import { auth, userCollection } from "../../../../config/firebase-config";
 import "./AddStockInput.css";
 
 export default function AddStockInput({setStocks, setAddStocksVisibility}) {
     const defaultInputValue = {
+        id : '',
         ticker: "",
         position: "BUY",
         quantity: 10,
@@ -35,25 +38,34 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
             //validation of a correct input
             if (inputValues.ticker && inputValues.price > 0 && inputValues.quantity > 0) {
                 const newStock = {
+                    id: uuidv4(),
                     ticker: inputValues.ticker,
                     position: inputValues.position,
                     quantity: inputValues.quantity,
                     price: inputValues.price,
                 };
 
-                const response = fetch(`https://${DATABASE}.json`, {
-                    method: "POST",
-                    "Content-Type": "application/json",
-                    body: JSON.stringify(newStock),
-                });
+                // const response = fetch(`https://${DATABASE}.json`, {
+                //     method: "POST",
+                //     "Content-Type": "application/json",
+                //     body: JSON.stringify(newStock),
+                // });
 
-                const data = response.json();
+                // const data = response.json();
 
-                if (data.name) {
-                    setStocks((stocks) => [
-                        ...stocks,
-                        { id: data.name, ...newStock},
-                    ]);
+                var userDoc = await getDoc(doc(userCollection, auth.currentUser.uid));
+
+                const stocksArray = userDoc.data().stocks;
+
+                const updatedStocksArray = [...stocksArray, newStock];
+
+                setDoc(doc(userCollection, auth.currentUser.uid), {stocks: updatedStocksArray});
+
+                userDoc = await getDoc(doc(userCollection, auth.currentUser.uid));
+                const data = userDoc.data().stocks;
+
+                if (data) {
+                    setStocks(updatedStocksArray);
                     setInputValues(defaultInputValue);
                     setAddStocksVisibility(false);
                 }
