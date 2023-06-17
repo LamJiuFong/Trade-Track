@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Portfolio from "./components/configuration/Portfolio";
-import PortFolioMonitor from "../PortfolioMonitor/PortfolioMonitor";
+import PortFolioMonitor from "./components/PortfolioMonitor/PortfolioMonitor";
 import "./PortfolioHome.css";
 
 export default function PortfolioHome() {

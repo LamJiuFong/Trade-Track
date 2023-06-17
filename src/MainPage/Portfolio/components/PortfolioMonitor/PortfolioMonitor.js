@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { STOCK_API } from '../utils/stockAPI';
-import { TOKEN } from '../utils/stockAPI';
-import stockFetcher from '../utils/stockFetcher';
+import { STOCK_API } from '../../../utils/stockAPI';
+import { TOKEN } from '../../../utils/stockAPI';
+import stockFetcher from '../../../utils/stockFetcher';
 import './PortfolioMonitor.css';
 
 export default function PortFolioMonitor({ stocks, setStocks }) {

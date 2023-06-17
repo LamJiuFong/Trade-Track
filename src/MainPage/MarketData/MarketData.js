@@ -1,12 +1,25 @@
-import React from 'react';
-import "./style.css";
-  
+import React, { useEffect, useState } from "react";
+import './style.css';
+import renderChart from "../utils/chartFetcher";
+
 const MarketData = () => {
+  const [ticker, setTicker] =useState('');
+
+ 
+  const handleTickerChange = (event) => {
+    setTicker(event.target.value);
+  }
+  const handleSubmit = () => {
+    renderChart(ticker);
+  }
+
   return (
-    <div className='app'>
-      <h1>We will include the market data here!</h1>
+    <div className="market-data">
+      <input type="text" value={ticker} onChange={handleTickerChange} />
+      <button onClick={handleSubmit}>submit</button>
+      <div id="chart" />
     </div>
   );
 };
-  
+
 export default MarketData;
