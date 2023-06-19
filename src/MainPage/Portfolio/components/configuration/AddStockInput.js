@@ -3,6 +3,9 @@ import { useState } from "react";
 import {v4 as uuidv4} from 'uuid';
 import { auth, userCollection } from "../../../../config/firebase-config";
 import "./AddStockInput.css";
+import symbolChecker from "../../../symbolChecker";
+import {ToastContainer} from "react-toastify";
+
 
 export default function AddStockInput({setStocks, setAddStocksVisibility}) {
     const defaultInputValue = {
@@ -31,12 +34,15 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
 
     //handle new stock additions
     const handleSubmit = async (event) => {
+
         //prevents default behavior of refreshing the page
         event.preventDefault(); 
 
+        var isValid = await symbolChecker(inputValues.ticker);
+
         try {
             //validation of a correct input
-            if (inputValues.ticker && inputValues.price > 0 && inputValues.quantity > 0) {
+            if (isValid && inputValues.price > 0 && inputValues.quantity > 0) {
                 const newStock = {
                     id: uuidv4(),
                     ticker: inputValues.ticker,
@@ -69,6 +75,8 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
                     setInputValues(defaultInputValue);
                     setAddStocksVisibility(false);
                 }
+            } else {
+                console.log("invalid symbol");
             }
         } catch (err) {
             console.log(err);
@@ -76,6 +84,7 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
     };
 
     return (
+    <div>
        <form className="AddStockForm">
             <div className="new-stock">
                 <input
@@ -129,5 +138,7 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
                 <span>Cancel</span>
             </button>
        </form> 
+       <ToastContainer/>
+    </div>
     );
 }

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./style.css";
 import MainPage from "../../MainPage/main";
 import { signInWithEmailAndPassword , sendPasswordResetEmail} from "firebase/auth";
-import {auth, userCollection} from "../../config/firebase-config";
+import {auth} from "../../config/firebase-config";
 import RegisterPage from "../RegisterPage/RegisterPage";
-import { getDoc, doc } from "firebase/firestore";
+
 
 export default function LoginPage() {
     // states

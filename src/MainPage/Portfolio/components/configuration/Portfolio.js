@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import AddStockInput from "./AddStockInput";
-import DATABASE from "../../../utils/database";
 import "./Portfolio.css";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { userCollection, auth } from "../../../../config/firebase-config";

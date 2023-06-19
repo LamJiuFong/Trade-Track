@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { STOCK_API } from '../../../utils/stockAPI';
-import { TOKEN } from '../../../utils/stockAPI';
+import React, { useEffect } from 'react';
 import stockFetcher from '../../../utils/stockFetcher';
 import './PortfolioMonitor.css';
 
