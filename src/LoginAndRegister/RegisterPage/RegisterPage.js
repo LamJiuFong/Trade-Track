@@ -44,6 +44,8 @@ export default function RegisterPage() {
         } else if (code === 'auth/weak-password') {
             setErrMsg('Password should be at least 6 characters');
             setPass('');
+        } else if (code === 'auth/missing-password') {
+            setErrMsg('Missing password');
         }
     }
 
