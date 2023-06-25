@@ -43,16 +43,17 @@ async function renderChart(ticker) {
         },
     };
     
-    const chartData = [trace, volumeTrace];
+    // console.log(volumeTrace);
+    // const chartData = [trace, volumeTrace];
 
-    // const chartData = [trace];
+    const chartData = [trace];
     
     if (chartData.length === 0) return;
     
     const layout = {
         title: ticker,
         yaxis: { title: "Price" },
-        yaxis2: { title: "Volume", overlaying: "y", side: "right", range: [0, 700000000] },
+        // yaxis2: { title: "Volume", overlaying: "y", side: "right", range: [0, 700000000] },
         xaxis: { rangeslider: { visible: false }, type: "date" },
         dragmode: 'pan',
         selectdirection: 'none',
