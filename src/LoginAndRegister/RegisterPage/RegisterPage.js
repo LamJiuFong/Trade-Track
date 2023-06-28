@@ -39,7 +39,7 @@ export default function RegisterPage() {
             setEmail('');
             setPass('');
         } else if (code === 'auth/email-already-in-use') {
-            setErrMsg('Email already registered, please proceed to login');
+            setErrMsg('Email has already been registered, please proceed to login');
             setPass('');
         } else if (code === 'auth/weak-password') {
             setErrMsg('Password should be at least 6 characters');
@@ -79,7 +79,7 @@ export default function RegisterPage() {
             {renderErrMessage()}
             <div className="submitButton">
                 <button className="registerButton" onClick={handleRegister}>
-                    register 
+                    Register 
                 </button>
             </div>
 
@@ -87,7 +87,7 @@ export default function RegisterPage() {
                 <button className="loginButton" 
                         onClick={() => setLoginSelected(true)}
                 >
-                    login
+                    Login
                 </button>
             </div>
         </>

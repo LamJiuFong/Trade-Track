@@ -97,7 +97,7 @@ export default function LoginPage() {
                     className="registerButton" 
                     onClick={() => setRegisterSelected(true)}
                 >
-                    register
+                    Register
                 </button>
             </div>
         </>
