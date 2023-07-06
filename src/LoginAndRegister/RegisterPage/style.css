@@ -1,45 +1,191 @@
-/* style.css */
+.register-page {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../../assets/loginPageBgImg.webp");
+  background-size: cover;
+  background-position: center;
+}
 
-.registerInput {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .error {
-    color: red;
-    margin-bottom: 10px;
-  }
-  
-  .submitButton {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-  
-  .registerButton,
-  .loginButton {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .registerButton:hover,
-  .loginButton:hover {
-    background-color: #0056b3;
-  }
-  
-  .registerButton:focus,
-  .loginButton:focus {
-    outline: none;
-  }
-  
-  .registerButton:active,
-  .loginButton:active {
-    background-color: #0056b3;
-    transform: translateY(1px);
-  }
-  
+/***************** Left login form ******************************/
+
+.register-form-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 600px;
+width: 500px;
+/*background-color: #333333;*/
+/*border: white 1px solid;*/
+border-radius: 10px;
+margin: 30px 0px 30px 30px;
+padding: 10px;
+}
+
+.register-form-title {
+color: white;
+}
+
+.input-container {
+display: flex;
+flex-direction: row;
+width: 100%;
+height: 40px;
+align-content: center;
+padding: 5px 0px 5px 0px;
+}
+
+.input-container-label {
+flex: 3;
+display: flex;
+align-items: center;
+height: 100%;
+font-weight: bold;
+color: white;
+}
+
+.input-container-input {
+flex: 7;
+height: 100%;
+border: 1px solid #e0e0e0;
+border-radius: 4px;
+background-color: #333333;
+color: white;
+}
+
+.input-container-input:hover {
+border-color: white; /* Hover border color */
+}
+
+.input-container-input:focus {
+border-color: #007bff; /* Selected border color */
+outline: none; /* Optional: Remove default focus outline */
+}
+
+.error {
+color: red;
+margin-bottom: 10px;
+}
+
+.register-button-container {
+width: 100%;
+margin-bottom: 10px;
+margin-top: 10px;
+}
+
+.register-button {
+width: 100%;
+padding: 8px 16px;
+background-color: #007bff;
+color: #fff;
+border: none;
+border-radius: 40px;
+cursor: pointer;
+}
+
+.register-button:hover {
+background-color: #0056b3;
+}
+
+.register-button:active {
+background-color: #0056b3;
+transform: translateY(1px);
+}
+
+.sign-in-container {
+display: flex;
+flex-direction: row;
+align-content: start;
+width: 100%;
+}
+
+.sign-in-label {
+font-size: 12px;
+color: white;
+margin-right: 5px;
+}
+
+.sign-in {
+font-size: 12px;
+cursor: pointer;
+color: #007bff;
+}
+
+.sign-in:hover {
+text-decoration: underline;
+}
+
+/***************** Right Title ******************************/
+.title-container {
+display: flex;
+align-content: center;
+justify-content: center;
+width: 100%;
+}
+
+@keyframes appear {
+0% {
+    opacity: 0;
+}
+100% {
+    opacity: 1;
+}
+}
+
+.animated-title {
+color: white;
+font-size: 100px;
+}
+
+.animated-title span {
+opacity: 0;
+animation: appear 2s ease-in-out forwards;
+}
+
+/*
+.animated-title span:nth-child(1) {
+animation-delay: 0s;
+}
+
+.animated-title span:nth-child(2) {
+animation-delay: 0.2s;
+}
+
+.animated-title span:nth-child(3) {
+animation-delay: 0.4s;
+}
+
+.animated-title span:nth-child(4) {
+animation-delay: 0.6s;
+}
+
+.animated-title span:nth-child(5) {
+animation-delay: 0.8s;
+}
+
+.animated-title span:nth-child(6) {
+animation-delay: 1s;
+}
+
+.animated-title span:nth-child(7) {
+animation-delay: 1.2s;
+}
+
+.animated-title span:nth-child(8) {
+animation-delay: 1.4s;
+}
+
+.animated-title span:nth-child(9) {
+animation-delay: 1.6s;
+}
+
+.animated-title span:nth-child(10) {
+animation-delay: 1.8s;
+}
+
+.animated-title span:nth-child(11) {
+animation-delay: 2s;
+}
+*/

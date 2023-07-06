@@ -65,56 +65,82 @@ export default function LoginPage() {
 
     // render form ui
     const renderForm = (
-        <>
-            <div className="inputContainer">
-                <label> Email:  </label>
+        <div className="login-form-container">
+            <h2 className = "login-form-title">Sign In</h2>
+            <div className="input-container">
+                <label className="input-container-label"> Email:  </label>
                 <input 
                     type = "text"
-                    className="loginInput"
+                    className="input-container-input"
+                    autoComplete="off"
                     name = "email"
                     value = {email}
                     onChange = {(event) => setEmail(event.target.value)}/>
             </div>
-            <div className="inputContainer">
-                <label> Password: </label>
+            <div className="input-container">
+                <label className="input-container-label"> Password: </label>
                 <input
                     type = "password"
-                    className="loginInput"
+                    className="input-container-input"
+                    autoComplete="off"
                     name = "pass"
                     value = {pass}
                     onChange = {(event) => setPass(event.target.value)}/>
-                <div className="forgotPassword" onClick={handleForgotPassword}>
+            </div>
+            <div className="forgot-password" onClick={handleForgotPassword}>
                     Forgot Password?
-                </div>
             </div>
             {renderErrMessage()}
-            <div className="submitButton">
-                <button className="loginButton" onClick={handleLogin}> Login </button>
+            <div className="login-button-container">
+                <button className="login-button" onClick={handleLogin}> Login </button>
             </div>
 
-            <div className="submitButton">
-                <button 
-                    className="registerButton" 
-                    onClick={() => setRegisterSelected(true)}
-                >
+            <div className="sign-up-container">
+                <div className="sign-up-label">
+                    Do not have an account?
+                </div>
+                <div className="sign-up" onClick={() => setRegisterSelected(true)}>
                     Register
-                </button>
+                </div>
+
             </div>
-        </>
+        </div>
     )
+
+    const renderTitle = (
+        <div className="title-container">
+            <h1 className="animated-title">
+                <span>T</span>
+                <span>R</span>
+                <span>A</span>
+                <span>D</span>
+                <span>E</span>
+                <span> </span>
+                <span>T</span>
+                <span>R</span>
+                <span>A</span>
+                <span>C</span>
+                <span>K</span>
+
+            </h1>
+        </div>
+    );
+
+    const renderLoginPage = (
+        <div className="login-page">
+            <>{renderForm}</>
+            <>{renderTitle}</>
+        </div>
+    );
 
 
     return (
-        <div className="app">
+        <div>
             {isLoggedIn 
              ? <MainPage/> // route to home page 
              : registerSelected
              ? <RegisterPage/> // route to register page
-             : <>
-               <h1 className = "title">Welcome to our page!</h1>
-               <h2 className = "smallTitle">Sign In</h2>
-                {renderForm}
-               </>
+             : <>{renderLoginPage}</>
              }
         </div>
     )
