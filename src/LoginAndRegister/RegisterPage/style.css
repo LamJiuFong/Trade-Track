@@ -141,10 +141,10 @@ font-size: 100px;
 
 .animated-title span {
 opacity: 0;
-animation: appear 2s ease-in-out forwards;
+animation: appear 8s ease-in-out forwards ;
 }
 
-/*
+
 .animated-title span:nth-child(1) {
 animation-delay: 0s;
 }
@@ -187,5 +187,11 @@ animation-delay: 1.8s;
 
 .animated-title span:nth-child(11) {
 animation-delay: 2s;
+animation-iteration-count: infinite;
 }
-*/
+
+.animated-title span:nth-child(12) {
+  animation-delay: 8s;
+  animation-iteration-count: infinite;
+  }
+

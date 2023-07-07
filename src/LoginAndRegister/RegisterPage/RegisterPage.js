@@ -111,7 +111,7 @@ export default function RegisterPage() {
                 <span>A</span>
                 <span>C</span>
                 <span>K</span>
-
+                <span> </span>
             </h1>
         </div>
     );
