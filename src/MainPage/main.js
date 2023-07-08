@@ -20,22 +20,23 @@ export default function MainPage() {
     setIsSignedOut(true);
   }
     
-
-  return (
-    <div className='app'> 
-    {
-      isSignedOut
-      ? <LoginPage />
-      : <Router>
-          <Navbar />
-            <button onClick={handleSignOut} className='signOutButton'>
-              Sign Out
-            </button>
+  const renderMainPage = (
+    <div className='main-page-container'>
+      <Router>
+          {Navbar(handleSignOut)}
           <Routes>
             <Route path='/' element={<PortfolioHome/>}></Route>
             <Route path='/MarketData' element={<MarketData/>}></Route>
           </Routes>
-        </Router>
+      </Router>
+    </div>
+  );
+
+  return (
+    <div> 
+    { isSignedOut
+      ? <LoginPage />
+      : <>{renderMainPage}</>
     }
     </div>
   );

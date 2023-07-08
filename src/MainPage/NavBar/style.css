@@ -1,50 +1,72 @@
-.nav {
-    background: #86CBD9;
-    height: 85px;
-    display: flex;
-    justify-content: space-between;
-    padding: 0.2rem calc((100vw - 1000px) / 2);
-    z-index: 12;
-  }
+@font-face {
+    font-family: 'Star Jhol';
+    src: url('../../assets/star_jedi/starjedi/Starjhol.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
   
-.nav-link {
-    color: #808080;
+
+.navbar-container {
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    height: 85px;
+    padding: 0px 20px 0px 20px;
+}
+
+.navbar-title {
+    display: flex;
+    flex-grow: 1;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    font-family: 'Star Jhol', sans-serif;
+}
+
+.nav-container {
+    display: flex;
+    width: 200px;
+    flex-direction: row;
+    justify-items: center;
+}
+
+.nav-link {
+    color:   #726565;
+    margin-right: 20px;
+    cursor: pointer;
     text-decoration: none;
-    padding: 0 1rem;
-    height: 100%;
+}
+
+.nav-link:hover {
+    color: #dddddd;
+}
+
+.nav-link.active {
+    color: white;
+}
+
+.sign-out-button-container {
+    width: 200px;
+}
+
+.sign-out-button {
+    width: 100%;
+    padding: 8px 16px;
+    background-color: #333333;
+    color: #fff;    
+    border: none;
+    border-radius: 40px;
     cursor: pointer;
 }
-  
-.nav-link.active {
-    color: #000000;
-}
-  
-.bars {
-    display: none;
-    color: #808080;
-}
 
-.nav-menu {
-    display: flex;
-    align-items: center;
-    margin-right: -24px;
+.sign-out-button:hover {
+    background-color: #555555;
 }
-  
-@media screen and (max-width: 768px) {
-.bars {
-      display: flex;
-      position: relative;
-      top: 0;
-      right: 0;
-      transform: translate(-100%, 75%);
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-  
-.nav-menu {
-      display: none;
-    }
-
+    
+.sign-out-button:active {
+    transform: translateY(1px);
 }
