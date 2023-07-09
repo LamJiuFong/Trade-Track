@@ -80,9 +80,6 @@ export default function Portfolio({ stocks, setStocks }) {
 
     return (
         <div className="portfolio-configuration-page-container">
-            <div className="portfolio-configuration-title">
-                Portfolio Configuration
-            </div>
             <div className="portfolio-configuration-container">
                 <div className="portfolio-main-row-wrapper">
                     <div className="portfolio-main-row">Ticker</div>
