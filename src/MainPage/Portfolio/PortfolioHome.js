@@ -20,21 +20,21 @@ export default function PortfolioHome() {
                                 className="portfolio-button-continue"
                                 onClick={() => setIsReady(true)}
                             >
-                                <span>Continue</span>
+                                <span>Monitor Portfolio</span>
                             </button>
                         </div>
                      </div>)
                   : 
                     (<div className="portfolio-monitor">
+                        <PortFolioMonitor stocks={stocks} setStocks={setStocks}/>
                         <div className='portfolio-monitor-button-back-wrapper'>
                             <button 
                                 className='portfolio-monitor-button-back'
                                 onClick={() => setIsReady(false)}
                             >
-                                <span>Go back to Portfolio</span>
+                                <span>Configure Portfolio</span>
                             </button>
                         </div>
-                        <PortFolioMonitor stocks={stocks} setStocks={setStocks}/>
                     </div>
                 )}
         </div>

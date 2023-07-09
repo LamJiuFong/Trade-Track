@@ -1,5 +1,4 @@
 .monitor-page {
-    width: 1016px;
     padding: 15px;
     margin-bottom: 15px;
     border: 3px solid #006e0c;
@@ -54,4 +53,9 @@
 
 .monitor-update-prices:hover {
     cursor: pointer;
+}
+
+.monitor-stocks-container {
+    max-height: 410px; /* set max height to 10 rows */
+    overflow-y: scroll;
 }

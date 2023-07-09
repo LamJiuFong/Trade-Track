@@ -23,7 +23,7 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
     const handleChange = (event) => {
         setInputValues((inputValues) => ({
             ...inputValues,
-            [event.target.name]: event.target.value,
+            [event.target.name]: event.target.value.toUpperCase(),
         }));
     };
 

@@ -49,28 +49,30 @@ export default function PortFolioMonitor({ stocks, setStocks }) {
                 <div className='monitor-main-row'>Profit/Loss</div>
             </div>
 
-            {stocks.map((s) => {
-                return (
-                    <div key={s.id}>
-                        <div className='monitor-row-wrapper'>
-                            <div className='monitor-row'>{s.ticker}</div>
-                            <div className='monitor-row'>{s.position}</div>
-                            <div className='monitor-row'>{s.quantity}</div>
-                            <div className='monitor-row'>{s.price}</div>
-                            <div className='monitor-row'>
-                                {s.currentPrice ? s.currentPrice : null}
-                            </div>
-                            <div
-                                className={`${
-                                    s.profitLoss > 0 ? 'profit-row' : 'loss-row'
-                                } monitor-row`}
-                            >
-                                {s.profitLoss ? s.profitLoss : null}
+            <div className='monitor-stocks-container'>
+                {stocks.map((s) => {
+                    return (
+                        <div key={s.id}>
+                            <div className='monitor-row-wrapper'>
+                                <div className='monitor-row'>{s.ticker}</div>
+                                <div className='monitor-row'>{s.position}</div>
+                                <div className='monitor-row'>{s.quantity}</div>
+                                <div className='monitor-row'>{s.price}</div>
+                                <div className='monitor-row'>
+                                    {s.currentPrice ? s.currentPrice : null}
+                                </div>
+                                <div
+                                    className={`${
+                                        s.profitLoss > 0 ? 'profit-row' : 'loss-row'
+                                    } monitor-row`}
+                                >
+                                    {s.profitLoss ? s.profitLoss : null}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
+            </div>
 
             <div className='monitor-summary-row-wrapper'>
                 <div className='monitor-summary-row'>Total:</div>
