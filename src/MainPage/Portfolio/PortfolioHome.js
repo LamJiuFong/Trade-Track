@@ -11,8 +11,7 @@ export default function PortfolioHome() {
     const [isReady, setIsReady] = useState(false);
 
     return (
-        <div className="PortfolioHome">
-            <div className="portfolio-home-body">
+        <div className="portfolio-home">
                 {!isReady 
                  ? (<div className="portfolio-configuration">
                         <Portfolio stocks={stocks} setStocks={setStocks}/>
@@ -38,7 +37,6 @@ export default function PortfolioHome() {
                         <PortFolioMonitor stocks={stocks} setStocks={setStocks}/>
                     </div>
                 )}
-            </div>
         </div>
     );    
 }

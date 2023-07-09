@@ -1,7 +1,13 @@
-.AddStockForm {
+.add-stock-form-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: start;
+    margin-top: 5px;
+}
+
+.form-container {
+    display: flex;
+    align-items: start;
 }
 
 .new-stock {
@@ -10,13 +16,43 @@
     display: flex;
     align-items: center;
     font-weight: bold;
+    border: 1px solid black;
 }
 
-.new-stock input, select {
+.new-stock input {
     width: 100%;
     height: 80%;
+    background-color: transparent;
+    border: none
+}
+
+.new-stock select {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none
 }
 
 .new-stock-input:focus {
     outline: none;
+}
+
+.add-cancel-button {
+    background: #006e0c;
+    height: 40px;
+    width: 100px;
+    margin-top: 5px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.add-cancel-button:not(:disabled):hover {
+    background-color: #009933;
+}
+
+.add-cancel-button:disabled {
+    opacity: 0.5;
 }

@@ -1,12 +1,8 @@
-.PortfolioHome {
+.portfolio-home {
     height: 100vh;
-}
-
-.portfolio-configuration {
     display: flex;
+    align-items: start;
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
 }
 
 .portfolio-button-continue-wrapper,
@@ -18,17 +14,18 @@
 
 .portfolio-button-continue,
 .portfolio-monitor-button-back {
+    background: #006e0c;
     width: 200px;
     height: 40px;
-    border: none;
-    border-radius: 20px;
-    background: black;
-    color: white;
     margin-top: 15px;
     margin-bottom: 15px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
 }
 
 .portfolio-button-continue:hover,
 .portfolio-monitor-button-back:hover {
-    cursor: pointer;
+    background-color: #009933;
 }

@@ -1,5 +1,5 @@
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {v4 as uuidv4} from 'uuid';
 import { auth, userCollection } from "../../../../config/firebase-config";
 import "./AddStockInput.css";
@@ -17,6 +17,7 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
     };
 
     const [inputValues, setInputValues] = useState(defaultInputValue);
+    const [canSubmit, setCanSubmit] = useState(false);
 
     //handle change of inputs
     const handleChange = (event) => {
@@ -25,6 +26,34 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
             [event.target.name]: event.target.value,
         }));
     };
+
+    const handleNumberChange = (event) => {
+        var input = event.target.value.replace(/\D/g, '');
+        if (input === "") {
+            input = "0";
+        }
+
+        const result = parseInt(input);
+
+        setInputValues((inputValues) => ({
+            ...inputValues,
+            [event.target.name]: result,
+        }));
+    };
+
+    function updateCanSubmit() {
+        if (inputValues.ticker === "" || inputValues.quantity <= 0 || inputValues.price <= 0) {
+            setCanSubmit(false);
+        }
+
+        if (inputValues.ticker !== "" && inputValues.quantity > 0 && inputValues.price > 0) {
+            setCanSubmit(true);
+        }
+    }
+
+    useEffect(() => {
+        updateCanSubmit();
+    }, [inputValues])
 
     //handle cancel
     const handleCancel = (event) => {
@@ -85,58 +114,64 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
 
     return (
     <div>
-       <form className="AddStockForm">
-            <div className="new-stock">
-                <input
-                    type="text"
-                    name="ticker"
-                    value={inputValues.ticker}
-                    onChange={handleChange}
-                    className="new-stock-input"/>
-            </div>
+       <form className="add-stock-form-container">
+            <div className="form-container">
+                <div className="new-stock">
+                    <input
+                        type="text"
+                        name="ticker"
+                        value={inputValues.ticker}
+                        onChange={handleChange}
+                        placeholder="Input Stock Ticker"
+                        className="new-stock-input"/>
+                </div>
 
-            <div className="new-stock">
-                <select
-                    name="position"
-                    onChange={handleChange}
-                    value={inputValues.position}
-                    className="new-stock-input"
-                >
-                    <option value="BUY">BUY</option>
-                    <option value="SELL">SELL</option>
-                </select>
-            </div>
+                <div className="new-stock">
+                    <select
+                        name="position"
+                        onChange={handleChange}
+                        value={inputValues.position}
+                        className="new-stock-input"
+                    >
+                        <option value="BUY">BUY</option>
+                        <option value="SELL">SELL</option>
+                    </select>
+                </div>
 
-            <div className="new-stock">
-                <input
-                    type="number"
-                    min="0"
-                    name="quantity"
-                    onChange={handleChange}
-                    value={inputValues.quantity}
-                    className="new-stock-input"
-                />
-            </div>
+                <div className="new-stock">
+                    <input
+                        type="text"
+                        name="quantity"
+                        onChange={handleNumberChange}
+                        value={inputValues.quantity}
+                        className="new-stock-input"
+                    />
+                </div>
 
-            <div className="new-stock">
-                <input
-                    type="number"
-                    min="0"
-                    name="price"
-                    onChange={handleChange}
-                    value={inputValues.price}
-                    className="new-stock-input"
-                />
+                <div className="new-stock">
+                    <input
+                        type="text"
+                        name="price"
+                        onChange={handleNumberChange}
+                        value={inputValues.price}
+                        className="new-stock-input"
+                    />
+                </div>
             </div>
             
-            
-            <button className="button-add" onClick={handleSubmit}>
-                <span>+</span>
-            </button>
+            <div className="add-cancel-buttons-container">
+                <button 
+                    className="add-cancel-button" 
+                    onClick={handleSubmit}
+                    disabled={!canSubmit}
+                    >
+                    <span>Add</span>
+                </button>
 
-            <button className="button-cancel" onClick={handleCancel}>
-                <span>Cancel</span>
-            </button>
+                <button className="add-cancel-button" onClick={handleCancel}>
+                    <span>Cancel</span>
+                </button>
+            </div>
        </form> 
        <ToastContainer/>
     </div>

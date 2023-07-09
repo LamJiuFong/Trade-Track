@@ -1,4 +1,24 @@
-.Portfolio {
+@font-face {
+    font-family: 'Star Jedi';
+    src: url('../../../../assets/star_jedi/starjedi/Starjedi.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.portfolio-configuration-page-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-configuration-title {
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-family: 'Star Jedi', sans-serif;
+    margin-bottom: 10px;
+}
+
+.portfolio-configuration-container {
     margin: auto;
     padding: 15px;
     border: 3px solid #006e0c;
@@ -24,6 +44,11 @@
     align-items: center;
     font-weight: bold;
     border-bottom: 1px solid #006e0c;
+}
+
+.portfolio-configuration-stocks-container {
+    max-height: 410px; /* set max height to 10 rows */
+    overflow-y: scroll;
 }
 
 .button-remove-stock {
@@ -55,8 +80,9 @@
     border: none;
     border-radius: 20px;
     color: white;
+    cursor: pointer;
 }
 
 .button-add-stock:hover {
-    cursor: pointer;
+    background-color: #009933;
 }
