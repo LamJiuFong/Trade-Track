@@ -14,11 +14,17 @@
     background-size: cover;
 }
 
+.portfolio-configuration-title {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
 .portfolio-main-row-wrapper, 
 .stock-row-wrapper {
     display: flex;
     align-items: center;
-    width: 100%;
 }
 
 .portfolio-main-row, 

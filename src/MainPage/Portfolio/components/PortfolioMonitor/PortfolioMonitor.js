@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import stockFetcher from '../../../utils/stockFetcher';
 import './PortfolioMonitor.css';
 
-export default function PortFolioMonitor({ stocks, setStocks }) {
+export default function PortFolioMonitor({ stocks, setStocks, portfolio }) {
 
     useEffect(() => {
         stockFetcher(stocks, setStocks, profitLossCalculator);
@@ -40,6 +40,8 @@ export default function PortFolioMonitor({ stocks, setStocks }) {
 
     return (
         <div className='monitor-page'>
+            <div className="portfolio-monitor-title">{portfolio.name}</div>
+
             <div className='monitor-main-row-wrapper'>
                 <div className='monitor-main-row'>Ticker</div>
                 <div className='monitor-main-row'>Position</div>

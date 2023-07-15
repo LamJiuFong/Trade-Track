@@ -18,11 +18,12 @@ export default function RegisterPage() {
     const [hasErr, setHasErr] = useState(false);
 
     // handlers
-    const handleRegister = async () => {
+    const handleRegister = async (event) => {
+        event.preventDefault();
         try {
             await createUserWithEmailAndPassword(auth, email, pass).then(() => {
                 // create an empty doc each time we register a new user
-                setDoc(doc(userCollection, auth.currentUser.uid), {stocks: []});
+                setDoc(doc(userCollection, auth.currentUser.uid), {portfolioList: []});
             });
             setIsLoggedIn(true);
             setHasErr(false);
@@ -57,7 +58,7 @@ export default function RegisterPage() {
 
     // render form ui
     const renderForm = (
-        <div className="register-form-container">
+        <form className="register-form-container" onSubmit={handleRegister}>
             <h2 className = "register-form-title">Create new account</h2>
             <div className="input-container">
                 <label className="input-container-label"> Email:  </label>
@@ -94,7 +95,7 @@ export default function RegisterPage() {
                     Sign in
                 </div>
             </div>
-        </div>
+        </form>
     )
 
     const renderTitle = (

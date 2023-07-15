@@ -7,7 +7,7 @@ import symbolChecker from "../../../symbolChecker";
 import {ToastContainer} from "react-toastify";
 
 
-export default function AddStockInput({setStocks, setAddStocksVisibility}) {
+export default function AddStockInput({setStocks, setAddStocksVisibility, portfolio}) {
     const defaultInputValue = {
         id : '',
         ticker: "",
@@ -79,25 +79,24 @@ export default function AddStockInput({setStocks, setAddStocksVisibility}) {
                     quantity: inputValues.quantity,
                     price: inputValues.price,
                 };
-
-                // const response = fetch(`https://${DATABASE}.json`, {
-                //     method: "POST",
-                //     "Content-Type": "application/json",
-                //     body: JSON.stringify(newStock),
-                // });
-
-                // const data = response.json();
-
-                var userDoc = await getDoc(doc(userCollection, auth.currentUser.uid));
-
-                const stocksArray = userDoc.data().stocks;
-
+                const stocksArray = portfolio.stocks;
                 const updatedStocksArray = [...stocksArray, newStock];
 
-                setDoc(doc(userCollection, auth.currentUser.uid), {stocks: updatedStocksArray});
+                portfolio.stocks = updatedStocksArray;
+
+                var userDoc = await getDoc(doc(userCollection, auth.currentUser.uid));
+                const portfolioList = userDoc.data().portfolioList;
+
+                const removedPortfolioList = portfolioList.filter(p => p.id !== portfolio.id);
+                const updatedPortfolioList = [...removedPortfolioList, portfolio];
+
+                setDoc(doc(userCollection, auth.currentUser.uid), {portfolioList: updatedPortfolioList});
+
+
+                // setDoc(doc(userCollection, auth.currentUser.uid), {stocks: updatedStocksArray});
 
                 userDoc = await getDoc(doc(userCollection, auth.currentUser.uid));
-                const data = userDoc.data().stocks;
+                const data = userDoc.data().portfolioList;
 
                 if (data) {
                     setStocks(updatedStocksArray);

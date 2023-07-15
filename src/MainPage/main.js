@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Navbar from './NavBar/Navbar';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import PortfolioHome from './Portfolio/PortfolioHome';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MarketData from './MarketData/MarketData';
 import {auth} from "../config/firebase-config";
 import { signOut } from 'firebase/auth';
 import LoginPage from '../LoginAndRegister/loginPage/LoginPage';
 import "./style.css";
+
 
 export default function MainPage() {
 
@@ -24,7 +24,8 @@ export default function MainPage() {
       <Router>
           {Navbar(handleSignOut)}
           <Routes>
-            <Route path='/' element={<PortfolioHome/>}></Route>
+            <Route exact path='/' element={<HomePage/>}></Route>
+            <Route path='/Portfolio' element={<PortfolioManagement />}></Route>
             <Route path='/MarketData' element={<MarketData/>}></Route>
           </Routes>
       </Router>
@@ -32,11 +33,10 @@ export default function MainPage() {
   );
 
   return (
-    <div> 
-    { isSignedOut
-      ? <LoginPage />
-      : <>{renderMainPage}</>
-    }
+    <div> { isSignedOut
+          ? <LoginPage />
+          : <>{renderMainPage}</>
+        }
     </div>
   );
 }

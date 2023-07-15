@@ -5,15 +5,14 @@
     justify-content: center;
 }
 
-.portfolio-button-continue-wrapper,
-.portfolio-monitor-button-back-wrapper {
+.portfolio-home-buttons-container {
     width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: center;
 }
 
-.portfolio-button-continue,
-.portfolio-monitor-button-back {
+.portfolio-home-button {
     background: #006e0c;
     width: 200px;
     height: 40px;
@@ -25,7 +24,10 @@
     cursor: pointer;
 }
 
-.portfolio-button-continue:hover,
-.portfolio-monitor-button-back:hover {
+.portfolio-home-button:hover {
     background-color: #009933;
+}
+
+.space {
+    width: 10px;
 }
