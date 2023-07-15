@@ -20,6 +20,8 @@ export default function PortfolioManagement() {
             const data = userDoc.data().portfolioList;
 
             if (data) {
+                // sort the portfolios according to creation date
+                data.sort((a, b) => new Date(a.time) - new Date(b.time));
                 setPortfolioList(data);
             }
         }
