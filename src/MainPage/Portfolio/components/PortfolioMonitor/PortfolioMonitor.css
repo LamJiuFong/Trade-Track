@@ -9,6 +9,13 @@
     background-size: cover;
 }
 
+.portfolio-monitor-title {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
 .monitor-main-row-wrapper,
 .monitor-row-wrapper {
     display: flex;

@@ -47,7 +47,7 @@ export default function PortfolioHome({portofolio, setChosePortfolio}) {
                      </div>)
                   : 
                     (<div className="portfolio-monitor">
-                        <PortFolioMonitor stocks={stocks} setStocks={setStocks}/>
+                        <PortFolioMonitor stocks={stocks} setStocks={setStocks} portfolio={portofolio}/>
                         <div className='portfolio-home-buttons-container'>
                             <button 
                                 className="portfolio-home-button"

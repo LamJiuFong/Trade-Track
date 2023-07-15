@@ -54,6 +54,7 @@ export default function Portfolio({ stocks, setStocks, portfolio }) {
     return (
         <div className="portfolio-configuration-page-container">
             <div className="portfolio-configuration-container">
+                <div className="portfolio-configuration-title">{portfolio.name}</div>
                 <div className="portfolio-main-row-wrapper">
                     <div className="portfolio-main-row">Ticker</div>
                     <div className="portfolio-main-row">Position</div>
