@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './style.css';
 import renderChart from "../utils/chartFetcher";
 import symbolChecker from "../symbolChecker";
 import {ToastContainer} from "react-toastify";
+import TemporaryModelContext from "../../TempModel/TempModelContext";
+import Plotly from "plotly.js";
 
 const MarketData = () => {
   const [ticker, setTicker] =useState('');
+  const { chart, setChart, tickerFromModel,  setTickerFromModel } = useContext(TemporaryModelContext);
 
+  useEffect(() => {
+    if (chart != null) {
+    
+      setTicker(tickerFromModel);
+      Plotly.newPlot("chart", chart.chartData, chart.layout, { responsive: true });
+    }
+  }, [chart, tickerFromModel])
  
   const handleTickerChange = (event) => {
     setTicker(event.target.value);
@@ -15,7 +25,9 @@ const MarketData = () => {
   const handleSubmit = async () => {
     var isValid = await symbolChecker(ticker);
     if (isValid) {
-      renderChart(ticker);
+      const chart = await renderChart(ticker);
+      setChart(chart);
+      setTickerFromModel(ticker);
     } 
   }
 
@@ -27,7 +39,7 @@ const MarketData = () => {
         </div>
         <button className='submit-button' onClick={handleSubmit}>Search</button>
       </div>
-      <div id="chart" />
+      <div id="chart"></div>
       <ToastContainer/>
     </div>
   );

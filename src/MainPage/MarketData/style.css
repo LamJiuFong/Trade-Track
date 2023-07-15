@@ -40,6 +40,7 @@
     cursor: pointer;
 }
 
-.submit-button :hover {
+.submit-button:hover {
     background-color: #009933;
+    cursor: pointer;
 }

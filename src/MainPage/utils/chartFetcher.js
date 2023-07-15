@@ -1,4 +1,3 @@
-import Plotly from "plotly.js";
 import axios from "axios";
 
 async function renderChart(ticker) {
@@ -61,8 +60,9 @@ async function renderChart(ticker) {
     
 
     // chart is the id that plotly will render, should be used in Market Data
-    Plotly.newPlot("chart", chartData, layout, { responsive: true });
+    // Plotly.newPlot("chart", chartData, layout, { responsive: true });
     
+    return {chartData, layout};
 }
 
 export default renderChart;

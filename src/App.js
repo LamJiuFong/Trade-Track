@@ -1,10 +1,14 @@
 import LoginPage from './LoginAndRegister/loginPage/LoginPage';
 import React from 'react';
+import { TemporaryModelProvider } from './TempModel/TempModelContext';
+
 
 function App() {
   return (
     <div>
-      <LoginPage />
+      <TemporaryModelProvider>
+        <LoginPage />
+      </TemporaryModelProvider>
     </div>
   )
 }
