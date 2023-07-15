@@ -59,9 +59,10 @@
 
 .button-add-stock {
     background: #006e0c;
-    width: 200px;
+    width: 150px;
     height: 40px;
     margin-top: 15px;
+    margin-bottom: 15px;
     border: none;
     border-radius: 20px;
     color: white;

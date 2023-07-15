@@ -21,8 +21,12 @@ const MarketData = () => {
 
   return (
     <div className="market-data">
-      <input type="text" value={ticker} onChange={handleTickerChange} />
-      <button onClick={handleSubmit}>submit</button>
+      <div className="input-data-wrapper">
+        <div className="input-box">
+          <input className="input-symbol" type="text" value={ticker} onChange={handleTickerChange} />
+        </div>
+        <button className='submit-button' onClick={handleSubmit}>Search</button>
+      </div>
       <div id="chart" />
       <ToastContainer/>
     </div>
