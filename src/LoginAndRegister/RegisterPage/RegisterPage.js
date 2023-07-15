@@ -22,7 +22,7 @@ export default function RegisterPage() {
         try {
             await createUserWithEmailAndPassword(auth, email, pass).then(() => {
                 // create an empty doc each time we register a new user
-                setDoc(doc(userCollection, auth.currentUser.uid), {stocks: []});
+                setDoc(doc(userCollection, auth.currentUser.uid), {portfolioList: []});
             });
             setIsLoggedIn(true);
             setHasErr(false);
