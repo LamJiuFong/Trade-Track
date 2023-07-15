@@ -7,6 +7,7 @@ import { signOut } from 'firebase/auth';
 import LoginPage from '../LoginAndRegister/loginPage/LoginPage';
 import "./style.css";
 import PortfolioManagement from './Portfolio/main';
+import HomePage from './HomePage/HomePage';
 
 
 export default function MainPage() {
@@ -25,7 +26,8 @@ export default function MainPage() {
       <Router>
           {Navbar(handleSignOut)}
           <Routes>
-            <Route path='/' element={<PortfolioManagement/>}></Route>
+            <Route exact path='/' element={<HomePage/>}></Route>
+            <Route path='/Portfolio' element={<PortfolioManagement />}></Route>
             <Route path='/MarketData' element={<MarketData/>}></Route>
           </Routes>
       </Router>

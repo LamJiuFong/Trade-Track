@@ -27,6 +27,11 @@
     font-family: 'Star Jhol', sans-serif;
 }
 
+.title-nav-link {
+    color: inherit;
+    text-decoration: none;
+}
+
 .nav-container {
     display: flex;
     width: 200px;

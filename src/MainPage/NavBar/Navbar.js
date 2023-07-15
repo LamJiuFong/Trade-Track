@@ -8,7 +8,7 @@ const Navbar = (handleSignOut) => {
       <div className="nav-container">
         <nav className="nav">
           <div className="nav-menu">
-            <NavLink to="/" className="nav-link" activeClassName="active">
+            <NavLink to="/Portfolio" className="nav-link" activeClassName="active">
               Portfolio
             </NavLink>
             <NavLink to="/MarketData" className="nav-link" activeClassName="active">
@@ -18,7 +18,9 @@ const Navbar = (handleSignOut) => {
         </nav>
       </div>
       <div className="navbar-title">
-        Trade Track
+        <NavLink to="/" className="title-nav-link">
+          Trade Track
+        </NavLink>
       </div>
       <div className="sign-out-button-container">
         <NavLink to="/" onClick={handleSignOut}>
