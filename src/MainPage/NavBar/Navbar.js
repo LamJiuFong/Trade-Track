@@ -21,9 +21,11 @@ const Navbar = (handleSignOut) => {
         Trade Track
       </div>
       <div className="sign-out-button-container">
-        <button onClick={handleSignOut} className='sign-out-button'>
-          Sign Out
-        </button>
+        <NavLink to="/" onClick={handleSignOut}>
+          <button className='sign-out-button'>
+            Sign Out
+          </button>
+        </NavLink>
       </div>
     </div>
   );
