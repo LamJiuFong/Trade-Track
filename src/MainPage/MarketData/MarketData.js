@@ -12,14 +12,13 @@ const MarketData = () => {
 
   useEffect(() => {
     if (chart != null) {
-    
       setTicker(tickerFromModel);
       Plotly.newPlot("chart", chart.chartData, chart.layout, { responsive: true });
     }
   }, [chart, tickerFromModel])
  
   const handleTickerChange = (event) => {
-    setTicker(event.target.value);
+    setTicker(event.target.value.toUpperCase());
   }
 
   const handleSubmit = async () => {
@@ -35,7 +34,7 @@ const MarketData = () => {
     <div className="market-data">
       <div className="input-data-wrapper">
         <div className="input-box">
-          <input className="input-symbol" type="text" value={ticker} onChange={handleTickerChange} />
+          <input className="input-symbol" type="text" placeholder="eg. TSLA" value={ticker} onChange={handleTickerChange} />
         </div>
         <button className='submit-button' onClick={handleSubmit}>Search</button>
       </div>
