@@ -16,7 +16,8 @@ export default function LoginPage() {
     const [hasErr, setHasErr] = useState(false);
 
     // handlers
-    const handleLogin = async () => {
+    const handleLogin = async (event) => {
+        event.preventDefault();
         try {
             const user = await signInWithEmailAndPassword(auth, email, pass);
             console.log(user);
@@ -65,7 +66,7 @@ export default function LoginPage() {
 
     // render form ui
     const renderForm = (
-        <div className="login-form-container">
+        <form className="login-form-container" onSubmit={handleLogin}>
             <h2 className = "login-form-title">Sign In</h2>
             <div className="input-container">
                 <label className="input-container-label"> Email:  </label>
@@ -104,7 +105,7 @@ export default function LoginPage() {
                 </div>
 
             </div>
-        </div>
+        </form>
     )
 
     const renderTitle = (
