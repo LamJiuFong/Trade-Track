@@ -19,7 +19,7 @@ const MarketData = () => {
   }, [chart, tickerFromModel])
  
   const handleTickerChange = (event) => {
-    setTicker(event.target.value);
+    setTicker(event.target.value.toUpperCase());
   }
 
   const handleSubmit = async () => {
@@ -28,16 +28,27 @@ const MarketData = () => {
       const chart = await renderChart(ticker);
       setChart(chart);
       setTickerFromModel(ticker);
-    } 
+    } else {
+      setTicker("");
+      setTickerFromModel("");
+    }
   }
 
   return (
     <div className="market-data">
       <div className="input-data-wrapper">
         <div className="input-box">
-          <input className="input-symbol" type="text" value={ticker} onChange={handleTickerChange} />
+          <input 
+            className="input-symbol" 
+            type="text"
+            value={ticker} 
+            onChange={handleTickerChange}
+            placeholder="Input stock ticker, e.g. AAPL" />
         </div>
-        <button className='submit-button' onClick={handleSubmit}>Search</button>
+        <button 
+          className='submit-button' 
+          onClick={handleSubmit}
+          disabled={ticker === ""}>Search</button>
       </div>
       <div id="chart"></div>
       <ToastContainer/>

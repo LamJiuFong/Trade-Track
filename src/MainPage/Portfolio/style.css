@@ -82,4 +82,5 @@
 
 .create-portfolio-form-input:focus {
     outline: none;
+    border-color: #00cc00;
 }
