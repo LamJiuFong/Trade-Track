@@ -4,8 +4,9 @@
 
 .portfolio-container {
     display: flex;
+    height: 40px;
     margin-bottom: 10px;
-    padding: 15px;
+    padding: 10px;
     border: 3px solid #006e0c;
     border-radius: 20px;
     background-color: white;
@@ -48,8 +49,6 @@
     display: inline-block;
     background: #006e0c;
     height: 40px;
-    margin: 5px;
-    padding: 5px;
     border: none;
     border-radius: 20px;
     color: white;
@@ -67,20 +66,38 @@
 .create-portfolio-form-container {
     display: flex;
     align-items: start;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 3px solid #006e0c;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.create-portfolio-form-container:focus {
+    border-color: #00cc00;
 }
 
 .create-portfolio-form-input {
     display: flex;
     width: 100%;
-    margin-bottom: 10px;
-    padding: 15px;
-    border: 3px solid #006e0c;
-    border-radius: 20px;
-    background-color: white;
+    height: 100%;
     text-align: center;
+    border: none;
+    outline: none;
 }
 
-.create-portfolio-form-input:focus {
-    outline: none;
-    border-color: #00cc00;
+
+
+.rename-icon {
+    color: grey;
+    margin-left: 10px;
+}
+
+.rename-icon:hover {
+    color: black;
+}
+
+.space {
+    width: 5px;
 }

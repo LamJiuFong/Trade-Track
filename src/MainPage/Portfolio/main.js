@@ -1,10 +1,12 @@
-import { async } from "@firebase/util";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { userCollection, auth } from "../../config/firebase-config";
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useState } from "react";
 import PortfolioHome from "./components/PortfolioHome/PortfolioHome";
 import "./style.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import PortfolioContainer from "./PortfolioContainer";
 
 export default function PortfolioManagement() {
     const [portfolioList, setPortfolioList] = useState([]);
@@ -12,6 +14,7 @@ export default function PortfolioManagement() {
     const [selectedPortfolio, setSelectedPortfolio] = useState({});
     const [createPortfolioVisible, setCreatePortfolioVisible] = useState(false);
     const [portfolioName, setPortfolioName] = useState("");
+
 
     useEffect(() => {
         // update the stockList
@@ -29,12 +32,12 @@ export default function PortfolioManagement() {
     }, []);
 
     const handleCreate = async (name) => {
-        const userDoc = await getDoc(doc(userCollection, auth.currentUser.uid));
-        const portfolioList = userDoc.data().portfolioList;
+
         const uniqueId = uuidv4().toString();
         const creationTime = new Date().toISOString();
+        const newPortfolio = {id: uniqueId, name: name, time: creationTime, stocks: []}
         
-        const updatedPortfolioList = [...portfolioList, {id: uniqueId, name: name, time: creationTime, stocks: []}];
+        const updatedPortfolioList = [...portfolioList, newPortfolio];
         setDoc(doc(userCollection, auth.currentUser.uid), {portfolioList: updatedPortfolioList});
         
         const newUserDoc = await getDoc(doc(userCollection, auth.currentUser.uid));
@@ -66,52 +69,34 @@ export default function PortfolioManagement() {
         setIsReady(true);
     };
 
-    const renderPortfolioContainer = (portfolio) => {
+    const handleRenamePortfolio = async (portfolio, newPortfolioName) => {
+        try {
+            portfolio.name = newPortfolioName;
+            setDoc(doc(userCollection, auth.currentUser.uid), {portfolioList: portfolioList});
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
-        const handleTap = () => {
-            handleSelectPortfolio(portfolio);
-        };
-
-        const handleDelete = (event) => {
-            event.stopPropagation();
-            handleDeletePortfolio(portfolio);
-        };
-
-        return (
-            <div onClick={handleTap} onTouchStart={handleTap} className="portfolio-container">
-                <div className="portfolio-title-row">
-                    <div className="portfolio-title">
-                        {portfolio.name ? <>{portfolio.name}</> : <>PORTFOLIO</>}
-                    </div>
-                    <button 
-                        className="remove-portfolio-button" 
-                        onClick={handleDelete}>
-                        <span>-</span>
-                    </button>
-                </div>
-            </div>
-        );
+    const handleSubmitCreate = async () => {
+        await handleCreate(portfolioName);
+        setPortfolioName("");
+        setCreatePortfolioVisible(false);
     };
 
-    function renderCreatePortfolioInput() {
+    const handleCancelCreate = () => {
+        setPortfolioName("");
+        setCreatePortfolioVisible(false);
+    }
 
-        const handleSubmit = async () => {
-            await handleCreate(portfolioName);
-            setPortfolioName("");
-            setCreatePortfolioVisible(false);
-        };
-
-        const handleCancel = () => {
-            setPortfolioName("");
-            setCreatePortfolioVisible(false);
-        }
-
+    function renderCreatePortfolioInput(handleSubmit, handleCancel) {
         if (createPortfolioVisible) {
             return (
                 <div className="create-portfolio-form-container">
                     <input
                         type="text"
                         value={portfolioName}
+                        maxLength={50}
                         onChange={(event) => setPortfolioName(event.target.value)}
                         placeholder="Input a name for your new portfolio"
                         className="create-portfolio-form-input"/>
@@ -121,6 +106,7 @@ export default function PortfolioManagement() {
                         disabled={portfolioName === ""}>
                             CREATE
                     </button>
+                    <div className="space"> </div>
                     <button className="create-portfolio-button" onClick={handleCancel}>CANCEL</button>
                 </div>
             );
@@ -143,10 +129,15 @@ export default function PortfolioManagement() {
            </div>)
         : (<div className="portfolio-management-page">
             <div>
-                {portfolioList.map(portfolio => renderPortfolioContainer(portfolio))}
+                {portfolioList.map(portfolio => 
+                    <PortfolioContainer 
+                        portfolio={portfolio}
+                        handleDeletePortfolio={handleDeletePortfolio}
+                        handleSelectPortfolio={handleSelectPortfolio}
+                        handleRenamePortfolio={handleRenamePortfolio}/>)}
             </div>
             
-            {renderCreatePortfolioInput()}
+            {renderCreatePortfolioInput(handleSubmitCreate, handleCancelCreate)}
 
             {renderCreatePortfolioButton()}
 
