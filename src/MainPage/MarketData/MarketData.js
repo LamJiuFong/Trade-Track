@@ -14,7 +14,7 @@ const MarketData = () => {
     if (chart != null) {
     
       setTicker(tickerFromModel);
-      Plotly.newPlot("chart", chart.chartData, chart.layout, { responsive: true });
+      Plotly.newPlot("chart", chart.chartData, chart.layout, { responsive: true, autosizable: true });
     }
   }, [chart, tickerFromModel])
  
@@ -34,6 +34,31 @@ const MarketData = () => {
     }
   }
 
+  const buildInfoText = () => {
+    if (chart !== null) {
+      return (
+        <div className="info-text-container">
+          <span>Tips:</span>
+          <span>1. Hover chart to show interactive options.</span>
+          <span>2. Hover candlestick to show details of each candle.</span>
+          <span>3. When using box/lasso select, double tap chart to remove selection.</span>
+          <span>4. Select autoscale or reset axes to scale back to original scale.</span>
+        </div>
+      );
+    }
+  }
+
+  const buildChartWithInfo = () => {
+    if (chart !== null) {
+      return (
+        <div className="chart-info-container">
+          <div id="chart"></div>
+          {buildInfoText()};
+        </div>
+      );
+    }
+  }
+
   return (
     <div className="market-data">
       <div className="input-data-wrapper">
@@ -50,7 +75,7 @@ const MarketData = () => {
           onClick={handleSubmit}
           disabled={ticker === ""}>Search</button>
       </div>
-      <div id="chart"></div>
+      {buildChartWithInfo()}
       <ToastContainer/>
     </div>
   );
