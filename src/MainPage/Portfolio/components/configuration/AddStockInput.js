@@ -28,18 +28,20 @@ export default function AddStockInput({setStocks, setAddStocksVisibility, portfo
     };
 
     const handleNumberChange = (event) => {
-        var input = event.target.value.replace(/\D/g, '');
-        if (input === "") {
-            input = "0";
-        }
-
-        const result = parseInt(input);
-
+        var val = handleDecimalsOnValue(event.target.value);
+        
         setInputValues((inputValues) => ({
             ...inputValues,
-            [event.target.name]: result,
+            [event.target.name]: val,
         }));
     };
+
+
+    function handleDecimalsOnValue(value) {
+        const regex = /([0-9]*[\.|\,]{0,1}[0-9]{0,2})/s;
+        return value.match(regex)[0];
+    }
+    
 
     function updateCanSubmit() {
         if (inputValues.ticker === "" || inputValues.quantity <= 0 || inputValues.price <= 0) {

@@ -4,6 +4,7 @@ import MainPage from "../../MainPage/main";
 import { signInWithEmailAndPassword , sendPasswordResetEmail} from "firebase/auth";
 import {auth} from "../../config/firebase-config";
 import RegisterPage from "../RegisterPage/RegisterPage";
+import { toast, ToastContainer } from "react-toastify";
 
 
 export default function LoginPage() {
@@ -12,8 +13,6 @@ export default function LoginPage() {
     const [pass, setPass] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [registerSelected, setRegisterSelected] = useState(false);
-    const [errMsg, setErrMsg] = useState('error');
-    const [hasErr, setHasErr] = useState(false);
 
     // handlers
     const handleLogin = async (event) => {
@@ -21,8 +20,7 @@ export default function LoginPage() {
         try {
             const user = await signInWithEmailAndPassword(auth, email, pass);
             console.log(user);
-            setIsLoggedIn(true);
-            setHasErr(false);
+            setIsLoggedIn(true);;
         } catch (err) {
             console.log(err);
             handleError(err.code);
@@ -30,37 +28,30 @@ export default function LoginPage() {
     }
 
     const handleError = (code) => {
-        setHasErr(true);
+        var errMsg = "error";
         if (code === 'auth/user-not-found') {
-            setErrMsg('User not registered');
+            errMsg = "User not registered";
             setEmail("");
             setPass("");
         } else if (code === 'auth/invalid-email') {
-            setErrMsg('Invalid email');
+            errMsg = "Invalid email";
             setEmail("");
             setPass("");
         } else if (code === 'auth/wrong-password') {
-            setErrMsg('Wrong password');
+            errMsg = "Wrong password";
             setPass("");
         } else if (code === 'auth/missing-email') {
-            setErrMsg('Please enter an email');
+            errMsg = "Please enter an email";
         }
+        toast.error(errMsg);
     }
 
     const handleForgotPassword = async () => {
         try {
             await sendPasswordResetEmail(auth, email);
-            setHasErr(false);
         } catch (err) {
             console.log(err);
             handleError(err.code);
-        }
-    }
-
-
-    const renderErrMessage = () => {
-        if (hasErr) {
-            return <div className="error">{errMsg}</div>
         }
     }
 
@@ -91,7 +82,6 @@ export default function LoginPage() {
             <div className="forgot-password" onClick={handleForgotPassword}>
                     Forgot Password?
             </div>
-            {renderErrMessage()}
             <div className="login-button-container">
                 <button className="login-button" onClick={handleLogin}> Login </button>
             </div>
@@ -131,6 +121,7 @@ export default function LoginPage() {
         <div className="login-page">
             <>{renderForm}</>
             <>{renderTitle}</>
+            <ToastContainer />
         </div>
     );
 

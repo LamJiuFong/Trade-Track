@@ -6,6 +6,7 @@ import { auth, userCollection } from "../../config/firebase-config";
 
 import "./style.css";
 import { setDoc, doc } from "firebase/firestore";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function RegisterPage() {
 
@@ -14,8 +15,6 @@ export default function RegisterPage() {
     const [pass, setPass] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [loginSelected, setLoginSelected] = useState(false);
-    const [errMsg, setErrMsg] = useState('error');
-    const [hasErr, setHasErr] = useState(false);
 
     // handlers
     const handleRegister = async (event) => {
@@ -26,7 +25,6 @@ export default function RegisterPage() {
                 setDoc(doc(userCollection, auth.currentUser.uid), {portfolioList: []});
             });
             setIsLoggedIn(true);
-            setHasErr(false);
         } catch (err) {
             console.log(err.code);
             handleError(err.code);
@@ -34,27 +32,24 @@ export default function RegisterPage() {
     }
 
     function handleError(code) {
-        setHasErr(true);
+        var errMsg = "error";
         if (code === 'auth/invalid-email') {
-            setErrMsg('Invalid email');
+            errMsg = 'Invalid email';
             setEmail('');
             setPass('');
         } else if (code === 'auth/email-already-in-use') {
-            setErrMsg('Email has already been registered, please proceed to login');
+            errMsg = 'Email has already been registered, please proceed to login';
             setPass('');
         } else if (code === 'auth/weak-password') {
-            setErrMsg('Password should be at least 6 characters');
+            errMsg = 'Password should be at least 6 characters';
             setPass('');
         } else if (code === 'auth/missing-password') {
-            setErrMsg('Missing password');
+            errMsg = 'Missing password';
         }
+
+        toast.error(errMsg);
     }
 
-    function renderErrMessage() {
-        if (hasErr) {
-            return <div className="error">{errMsg}</div>;
-        }
-    }
 
     // render form ui
     const renderForm = (
@@ -80,7 +75,6 @@ export default function RegisterPage() {
                     value = {pass}
                     onChange = {(event) => setPass(event.target.value)}/>
             </div>
-            {renderErrMessage()}
             <div className="register-button-container">
                 <button className="register-button" onClick={handleRegister}>
                     Register 
@@ -122,6 +116,7 @@ export default function RegisterPage() {
         <div className="register-page">
             <>{renderForm}</>
             <>{renderTitle}</>
+            <ToastContainer />
         </div>
     );
 
