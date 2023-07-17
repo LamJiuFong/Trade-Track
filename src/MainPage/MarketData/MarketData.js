@@ -65,7 +65,7 @@ const MarketData = () => {
           <input 
             className="input-symbol" 
             type="text"
-            placeholder="eg. TSLA" value={ticker} 
+            value={ticker} 
             onChange={handleTickerChange}
             placeholder="Input stock ticker, e.g. AAPL" />
         </div>

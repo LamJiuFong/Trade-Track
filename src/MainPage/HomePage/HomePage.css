@@ -1,0 +1,86 @@
+
+.page {
+    height: 600px;
+}
+
+.header {
+    font-size: 3rem;
+    font-weight: 700;
+    color:aqua;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.content {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: aquamarine;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+.header,
+.content{
+    width: 100%;
+    animation: typing 2s steps(21), blink .5s;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: Gt america standard,sans-serif;
+    text-align: center;
+  }
+  
+@keyframes typing {
+   from {
+    width: 0;
+   }
+}
+      
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.button-wrapper {
+    text-align: center;
+}
+
+.next-button {
+    color: #140808;
+    text-align: center;
+    background-color: aqua;
+    border: 1.5px solid antiquewhite;
+    border-radius: 6px;
+    width: 200px;
+    padding: 8px 16px;
+    cursor: pointer;
+    
+}
+
+.shine {
+    font-family: 'Gt america standard', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    background: linear-gradient(to left, #000000, rgb(148, 236, 251) 70%, #222);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 5s linear infinite;
+  }
+  
+  @keyframes shine {
+    0% {
+      background-position: 100%;
+    }
+    100% {
+      background-position: -100%;
+    }
+  }
+
+  
+  
+  
+  
+  
+  
+  

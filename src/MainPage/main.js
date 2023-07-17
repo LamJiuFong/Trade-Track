@@ -5,6 +5,8 @@ import MarketData from './MarketData/MarketData';
 import {auth} from "../config/firebase-config";
 import { signOut } from 'firebase/auth';
 import "./style.css";
+import HomePage from "./HomePage/HomePage";
+import PortfolioManagement from './Portfolio/main';
 
 
 export default function MainPage() {
