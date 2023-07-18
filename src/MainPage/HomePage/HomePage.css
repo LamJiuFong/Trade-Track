@@ -49,12 +49,16 @@
     color: #140808;
     text-align: center;
     background-color: aqua;
-    border: 1.5px solid antiquewhite;
+    border: 1.5px solid rgb(0, 0, 0);
     border-radius: 6px;
     width: 200px;
     padding: 8px 16px;
     cursor: pointer;
     
+}
+
+.next-button:hover {
+  border:hsl(0, 0%, 100%);
 }
 
 .shine {
